@@ -1,0 +1,231 @@
+.game-screen,
+.game-over {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: "Comic Neue", cursive;
+  overflow-y: auto;
+  position: relative;
+}
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+  color: #333333;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: "Comic Neue", cursive;
+}
+
+.card-text {
+  font-family: "Comic Neue", cursive;
+}
+
+.word-display {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff4500;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  border-color: #e5e5e5;
+  font-size: 1rem;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-family: "Comic Neue", cursive;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.submit-button {
+  background-color: #ff4500 !important;
+  border-color: #ff4500 !important;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  font-family: "Comic Neue", cursive;
+}
+
+.submit-button:hover {
+  background-color: #ff9966 !important;
+  border-color: #ff9966 !important;
+}
+
+.skip-button {
+  background-color: #ccc !important;
+  border-color: #ccc !important;
+  color: #333333 !important;
+  font-weight: 500;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  font-family: "Comic Neue", cursive;
+}
+
+.skip-button:hover {
+  background-color: #999 !important;
+  border-color: #999 !important;
+}
+
+.share-button {
+  background-color: #ff9966 !important;
+  border-color: #ff9966 !important;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  font-family: "Comic Neue", cursive;
+  margin-top: 10px;
+}
+
+.share-button:hover {
+  background-color: #ff4500 !important;
+  border-color: #ff4500 !important;
+}
+
+.completed-words-container {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 20px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 10px 15px;
+  border: 1px solid #e5e5e5;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  color: #333333;
+  font-weight: 700;
+  font-family: "Comic Neue", cursive;
+}
+
+.list-header span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.completed-words-list {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.completed-words-list .list-group-item {
+  color: #333333;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
+  font-family: "Comic Neue", cursive;
+}
+
+.completed-words-list .list-group-item:last-child {
+  border-bottom: none;
+}
+
+.result-animation {
+  position: absolute;
+  font-size: 2rem; /* Default size, adjusted for skip below */
+  font-weight: bold;
+  animation: oscillateResult 1s ease forwards;
+  font-family: "Comic Neue", cursive;
+  z-index: 10;
+}
+
+/* Adjust skip message size */
+.result-animation:where([style*="color: #999"]) {
+  font-size: 1.5rem; /* Smaller for skip messages */
+}
+
+@keyframes oscillateResult {
+  0% {
+    opacity: 1;
+  } /* Start with initial transform from inline style */
+  50% {
+    transform: translateX(-50%) rotate(-30deg);
+    opacity: 1;
+  } /* Swing opposite */
+  100% {
+    opacity: 0;
+  } /* End with initial transform, fade out */
+}
+
+@keyframes oscillateResultRight {
+  0% {
+    opacity: 1;
+  } /* Start with initial transform from inline style */
+  50% {
+    transform: translateX(50%) rotate(30deg);
+    opacity: 1;
+  } /* Swing opposite */
+  100% {
+    opacity: 0;
+  } /* End with initial transform, fade out */
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Mobile responsiveness adjustments */
+@media (max-width: 576px) {
+  .card,
+  .completed-words-container {
+    max-width: 100%;
+    margin: 0 10px;
+  }
+
+  .word-display {
+    font-size: 1.5rem;
+  }
+
+  .input-field {
+    font-size: 0.9rem;
+  }
+
+  .submit-button,
+  .skip-button,
+  .share-button {
+    padding: 8px 16px;
+  }
+
+  .result-animation {
+    font-size: 1.5rem;
+  }
+
+  .result-animation:where([style*="color: #999"]) {
+    font-size: 1.2rem;
+  }
+
+  .list-header {
+    font-size: 0.9rem;
+  }
+}

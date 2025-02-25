@@ -1,0 +1,37 @@
+.modal-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.modal-title {
+  color: #333333;
+  font-weight: 700;
+  font-family: "Comic Neue", cursive;
+}
+
+.modal-body {
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: "Comic Neue", cursive;
+}
+
+.modal-footer {
+  background-color: #ffffff;
+  border-top: 1px solid #e5e5e5;
+}
+
+.start-button {
+  background-color: #ff9966 !important; /* Pastel orange, already set but confirmed */
+  border-color: #ff9966 !important;
+  color: #ffffff;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  font-family: "Comic Neue", cursive;
+}
+
+.start-button:hover {
+  background-color: #ff4500; /* Fiery orange-red on hover */
+  border-color: #ff4500;
+}
