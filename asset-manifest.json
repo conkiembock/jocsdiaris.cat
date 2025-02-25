@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/jocsdiaris.cat/static/css/main.276caaad.css",
-    "main.js": "/jocsdiaris.cat/static/js/main.f03b7e26.js",
+    "main.js": "/jocsdiaris.cat/static/js/main.4c07d00d.js",
     "index.html": "/jocsdiaris.cat/index.html",
     "main.276caaad.css.map": "/jocsdiaris.cat/static/css/main.276caaad.css.map",
-    "main.f03b7e26.js.map": "/jocsdiaris.cat/static/js/main.f03b7e26.js.map"
+    "main.4c07d00d.js.map": "/jocsdiaris.cat/static/js/main.4c07d00d.js.map"
   },
   "entrypoints": [
     "static/css/main.276caaad.css",
-    "static/js/main.f03b7e26.js"
+    "static/js/main.4c07d00d.js"
   ]
 }
