@@ -1,29 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Container, Form, Button, Card, ListGroup } from "react-bootstrap";
-import Flag from "react-flag-icon-css";
+import CountryFlag from "react-country-flag"; // Updated import
 import ShareModal from "./ShareModal";
 import ProgressBar from "./ProgressBar";
 import "./GameScreen.css";
 
 const words = [
-  { word: "apple", translation: "manzana" },
-  { word: "banana", translation: "plátano" },
-  { word: "cherry", translation: "cereza" },
-  { word: "date", translation: "dátil" },
-  { word: "elderberry", translation: "saúco" },
+  { word: "manzana", translation: "poma" },
+  { word: "trago", translation: "glop" },
+  { word: "escaparate", translation: "aparador" },
+  { word: "columpio", translation: "gronxador" },
+  { word: "cadera", translation: "maluc" },
 ];
 
 const skipMessages = [
-  "Skipped it!",
-  "Onward we go!",
-  "Next one, please!",
-  "Pass!",
-  "Moving along!",
-  "Nope, next!",
-  "Skipping ahead!",
-  "Let’s try another!",
-  "Outta here!",
-  "See ya, word!",
+  "ai, quina pena!",
+  "ostres, no saps?",
+  "buf",
+  "quin disgust, saltar!",
+  "mare meva, res!",
+  "t'escapa?",
+  "quina llàstima...",
+  "quin mal :/",
+  "t'escapa?",
+  "que ràbia!",
 ];
 
 const removeAccents = (str) => {
@@ -60,7 +60,7 @@ const GameScreen = () => {
 
     const interval = setInterval(() => {
       if (currentIndex >= words.length) {
-        clearInterval(interval); // Stop interval when game is over
+        clearInterval(interval);
         return;
       }
       const timeTaken = (Date.now() - startTime) / 1000;
@@ -90,7 +90,7 @@ const GameScreen = () => {
   };
 
   const handleSkip = () => {
-    if (currentIndex >= words.length) return; // Prevent skip after game over
+    if (currentIndex >= words.length) return;
 
     const currentWord = words[currentIndex];
     setCompletedWords([
@@ -156,29 +156,29 @@ const GameScreen = () => {
   if (currentIndex >= words.length) {
     let message;
     if (totalScore < 1000) {
-      message = "Keep practicing, you'll get there!";
+      message = "No entens res tu!";
     } else if (totalScore < 2000) {
-      message = "Nice effort, you're on your way!";
+      message = "Quin esforç, però no!";
     } else if (totalScore < 3000) {
-      message = "Great job, you're a word wizard!";
+      message = "Ja parlem";
     } else if (totalScore < 4000) {
-      message = "Awesome score, almost perfect!";
+      message = "Ai, gairebé perfecte!";
     } else {
-      message = "Incredible! You're a translation master!";
+      message = "Increïble, un mestre!";
     }
 
     return (
       <Container className="game-over">
         <Card className="text-center">
           <Card.Body>
-            <Card.Title as="h2">Game Over</Card.Title>
-            <Card.Text>Your total score is: {totalScore}</Card.Text>
+            <Card.Title as="h2">Fins aquí, nano!</Card.Title>
+            <Card.Text>Punts: {totalScore}</Card.Text>
             <Card.Text>{message}</Card.Text>
             <Button
               className="share-button"
               onClick={() => setShowShareModal(true)}
             >
-              Share
+              Compartir
             </Button>
           </Card.Body>
         </Card>
@@ -186,16 +186,26 @@ const GameScreen = () => {
           <div className="completed-words-container">
             <div className="list-header">
               <span>
-                <Flag code="us" size="lg" /> English
+                <CountryFlag
+                  countryCode="ES"
+                  svg
+                  style={{ fontSize: "1.5em" }}
+                />{" "}
+                Castellano
               </span>
               <span>
-                <Flag code="es" size="lg" /> Spanish
+                <CountryFlag
+                  countryCode="CAT"
+                  svg
+                  style={{ fontSize: "1.5em" }}
+                />{" "}
+                Català
               </span>
             </div>
             <ListGroup className="completed-words-list">
               {completedWords.map((item, index) => (
                 <ListGroup.Item key={index}>
-                  {item.word} → {item.translation} (+{item.score} points)
+                  {item.word} → {item.translation} (+{item.score} punts)
                 </ListGroup.Item>
               ))}
             </ListGroup>
@@ -216,10 +226,12 @@ const GameScreen = () => {
         <div className="completed-words-container">
           <div className="list-header">
             <span>
-              <Flag code="us" size="lg" /> English
+              <CountryFlag countryCode="ES" svg style={{ fontSize: "1.5em" }} />{" "}
+              Castellà
             </span>
             <span>
-              <Flag code="es" size="lg" /> Spanish
+              <CountryFlag countryCode="ES" svg style={{ fontSize: "1.5em" }} />{" "}
+              Català
             </span>
           </div>
           <ListGroup className="completed-words-list">
@@ -233,20 +245,23 @@ const GameScreen = () => {
       )}
       <Card className="text-center">
         <Card.Body>
-          <Card.Title as="h2">Translate the word:</Card.Title>
+          <Card.Title as="h2">Com es diu en català?</Card.Title>
           <Card.Text className="word-display">
             {words[currentIndex].word}
           </Card.Text>
-          <Form>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit();
+            }}
+          >
             <Form.Group controlId="translationInput">
               <ProgressBar potentialScore={potentialScore}>
                 <Form.Control
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter") handleSubmit();
-                  }}
+                  // Removed onKeyPress
                   onFocus={() => {
                     if (inputRef.current) {
                       inputRef.current.scrollIntoView({
@@ -255,7 +270,7 @@ const GameScreen = () => {
                       });
                     }
                   }}
-                  placeholder="Enter translation"
+                  placeholder=""
                   className="input-field"
                   ref={inputRef}
                 />
@@ -263,10 +278,10 @@ const GameScreen = () => {
             </Form.Group>
             <div className="button-group">
               <Button className="submit-button" onClick={handleSubmit}>
-                Submit
+                Enviar
               </Button>
               <Button className="skip-button" onClick={handleSkip}>
-                Skip
+                Saltar
               </Button>
             </div>
           </Form>
@@ -282,7 +297,7 @@ const GameScreen = () => {
                 color: "#ff9966",
               }}
             >
-              +{showPoints} points
+              +{showPoints} punts
             </div>
           )}
           {showPenalty !== null && (
@@ -297,7 +312,7 @@ const GameScreen = () => {
                 color: "#ff0000",
               }}
             >
-              {showPenalty} points
+              {showPenalty} punts
             </div>
           )}
           {showSkipMessage !== null && (
