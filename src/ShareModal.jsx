@@ -21,16 +21,16 @@ const ShareModal = ({ show, onHide, completedWords }) => {
   return (
     <BootstrapModal show={show} onHide={onHide} centered>
       <BootstrapModal.Header closeButton>
-        <BootstrapModal.Title>Share Your Results</BootstrapModal.Title>
+        <BootstrapModal.Title>Els teus resultats</BootstrapModal.Title>
       </BootstrapModal.Header>
       <BootstrapModal.Body>
-        <p>Here’s how you did:</p>
+        <p>Ho has fet aixi:</p>
         <pre className="share-results">{resultText}</pre>
-        <p>Copy and share this with your friends!</p>
+        <p>Comparteix-ho amb els teus amics!</p>
       </BootstrapModal.Body>
       <BootstrapModal.Footer>
         <Button variant="secondary" onClick={onHide}>
-          Close
+          Tancar
         </Button>
       </BootstrapModal.Footer>
     </BootstrapModal>
